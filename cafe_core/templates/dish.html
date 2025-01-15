@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выбор блюд для стола</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> <!-- Подключаем CSS -->
+</head>
+<body>
+    <div class="container">
+        <h1>Стол №1</h1>
+        <h2>Выберите блюда:</h2>
+        <form action="{% url 'order-create' %}" method="POST">
+            {% csrf_token %}
+            <div class="dishes">
+                {% for dish in dishes %}
+                <div class="dish">
+                    <label>
+                        <input type="checkbox" name="dish" value="3" onclick="updateTotal(300)">
+                        {{dish.name}} - {{dish.price}} ₽
+                    </label>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="total-price">Общая сумма: <span id="total">0</span> ₽</div>
+            <button type="submit" class="btn">Сделать заказ</button>
+        </form>
+    </div>
+
+
+</body>
+</html>

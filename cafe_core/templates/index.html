@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выбор стола</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <!-- Основной блок -->
+        <div class="main-content">
+            <h1>Выберите стол</h1>
+            <div class="tables">
+                {% for table in tables %}
+                    <a href="{% url 'table_orders' table.id %}" class="table">
+                        Стол {{ table }}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Боковая панель -->
+        <div class="sidebar">
+            <h2>Ваши заказы</h2>
+            {% if orders %}
+                <ul>
+                    {% for order in orders %}
+                        <li>
+                            <strong>Стол {{ order.table_number }}</strong>: {{ order.total_price }} ₽
+                            ({{ order.get_status_display }})
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Пока заказов нет.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
