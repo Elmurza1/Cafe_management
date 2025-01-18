@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование заказа №{{ order.id }}</title>
+    <link  rel="stylesheet" href="{% static 'css/order_edit.css' %}">
+</head>
+<body>
+    <h1>Редактирование заказа №{{ order.id }}</h1>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <!-- Изменение номера стола -->
+        <label>Номер стола:</label>
+        <select name="table_number">
+            {% for table in tables %}
+                <option value="{{ table.id }}" {% if table == order.table_number %}selected{% endif %}>
+                    {{ table.number }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <!-- Выбор блюд -->
+        <h3>Выберите блюда:</h3>
+        {% for dish in dishes %}
+            <label>
+                <input type="checkbox" name="dishes" value="{{ dish.id }}"
+                    {% if dish in order.items.all %}checked{% endif %}>
+                {{ dish.name }} - {{ dish.price }} ₽
+            </label><br>
+        {% endfor %}
+
+        <!-- Изменение статуса -->
+        <h3>Статус заказа:</h3>
+        <select name="status">
+            <option value="pending" {% if order.status == "pending" %}selected{% endif %}>В ожидании</option>
+            <option value="ready" {% if order.status == "ready" %}selected{% endif %}>Готово</option>
+            <option value="paid" {% if order.status == "paid" %}selected{% endif %}>Оплачено</option>
+        </select>
+
+        <button type="submit">Сохранить</button>
+    </form>
+
+    <a href="{% url 'order-detail' order.pk %}">Отмена</a>
+</body>
+</html>

@@ -1,0 +1,92 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Заголовок */
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Информация о заказе */
+.order-info {
+    padding: 15px;
+    border-radius: 5px;
+    background: #f9f9f9;
+    margin-bottom: 15px;
+}
+
+.order-info p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+/* Статус заказа */
+.status {
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.status.pending {
+    background: #f0ad4e;
+    color: white;
+}
+
+.status.ready {
+    background: #5bc0de;
+    color: white;
+}
+
+.status.paid {
+    background: #5cb85c;
+    color: white;
+}
+
+/* Кнопки */
+.actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.actions a {
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    text-align: center;
+    width: 45%;
+}
+
+.edit-btn {
+    background: #007bff;
+    color: white;
+}
+
+.edit-btn:hover {
+    background: #0056b3;
+}
+
+.back-btn {
+    background: #6c757d;
+    color: white;
+}
+
+.back-btn:hover {
+    background: #5a6268;
+}

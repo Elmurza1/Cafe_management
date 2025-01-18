@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список заказов</title>
+    <link rel="stylesheet" href="{% static 'css/order.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Список заказов</h1>
+
+        <!-- Форма для поиска -->
+        <div class="search-form">
+            <h3>Поиск по заказам</h3>
+            <form method="GET" action="{% url 'orders-list' %}">
+                <input type="text" name="search" placeholder="Введите ID заказа или номер стола" value="{{ request.GET.search }}">
+                <button type="submit">Искать</button>
+            </form>
+        </div>
+
+        <!-- Таблица заказов -->
+        <table class="orders-table">
+            <thead>
+                <tr>
+                    <th>ID Заказа</th>
+                    <th>Номер стола</th>
+                    <th>Список блюд</th>
+                    <th>Общая стоимость</th>
+                    <th>Статус</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+
+                <tr>
+
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.table_number.number }}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{% url 'order-detail' order.pk %}">Заказ №{{ order.id }} - {{ order.total_price }} ₽</a>
+                            </li>
+                            {% for dish in order.items.all %}
+                            <li>{{ dish.name }} ({{ dish.price }} ₽)</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td>{{ order.total_price }} ₽</td>
+                    <td>{{ order.get_status_display }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">Заказы не найдены</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

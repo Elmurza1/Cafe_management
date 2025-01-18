@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Dish, Order, Shift, Table
+from .models import Dish, Order, Shift
 
 @admin.register(Dish)
 class DishAdmin(admin.ModelAdmin):
@@ -14,9 +14,4 @@ class OderAdmin(admin.ModelAdmin):
 @admin.register(Shift)
 class ShiftAdmin(admin.ModelAdmin):
     list_display = ['id', 'start_time', 'end_time']
-
-
-@admin.register(Table)
-class TableAdmin(admin.ModelAdmin):
-    list_display = ['id', 'number']
 

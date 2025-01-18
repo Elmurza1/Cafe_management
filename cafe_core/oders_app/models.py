@@ -38,7 +38,7 @@ class Order(models.Model):
 
     ]
     items = models.ManyToManyField(Dish, verbose_name='блюда')
-    table_number = models.ManyToManyField(Table ,verbose_name='номер стола')
+    table_number = models.ForeignKey(Table , on_delete=models.CASCADE, null=True ,verbose_name='номер стола')
 
     total_price = models.PositiveIntegerField(
         verbose_name='общая стоимость',
@@ -54,6 +54,7 @@ class Order(models.Model):
 
     def __str__(self):
         return f"Заказ {self.id} (Стол {self.table_number})"
+
 
     class Meta:
         verbose_name = 'заказ'

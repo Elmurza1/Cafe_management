@@ -14,7 +14,7 @@
             <h1>Выберите стол</h1>
             <div class="tables">
                 {% for table in tables %}
-                    <a href="{% url 'table_orders' table.id %}" class="table">
+                    <a href="{% url 'orders-url' table.id %}" class="table">
                         Стол {{ table }}
                     </a>
                 {% endfor %}

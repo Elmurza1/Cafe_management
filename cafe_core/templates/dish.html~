@@ -9,20 +9,28 @@
 </head>
 <body>
     <div class="container">
-        <h1>Стол №1</h1>
+        <h1>Стол {{ table }}</h1>
         <h2>Выберите блюда:</h2>
         <form action="{% url 'order-create' %}" method="POST">
             {% csrf_token %}
+                <input type="hidden" name="table" value="{{ table.id }}">
+
             <div class="dishes">
                 {% for dish in dishes %}
                 <div class="dish">
                     <label>
-                        <input type="checkbox" name="dish" value="3" onclick="updateTotal(300)">
+                        <input type="checkbox" name="dish" value="{{dish.id}}" onclick="updateTotal(300)">
                         {{dish.name}} - {{dish.price}} ₽
                     </label>
                 </div>
                 {% endfor %}
             </div>
+             <h3>Select Status</h3>
+                <select name="status">
+                    <option value="padding">Ожидает</option>
+                    <option value="ready">Готово</option>
+                    <option value="paid">Оплачен</option>
+                </select>
 
             <div class="total-price">Общая сумма: <span id="total">0</span> ₽</div>
             <button type="submit" class="btn">Сделать заказ</button>
