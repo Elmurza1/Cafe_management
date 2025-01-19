@@ -1,62 +1,119 @@
-body {
-    font-family: Arial, sans-serif;
+/* Общие стили */
+* {
     margin: 0;
     padding: 0;
-    display: flex;
+    box-sizing: border-box;
 }
 
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Контейнер */
 .container {
     display: flex;
-    width: 100%;
-    min-height: 100vh;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
+/* Основной блок */
 .main-content {
-    flex: 3;
-    padding: 20px;
-    background-color: #f9f9f9;
+    flex: 2;
+    margin-right: 20px;
 }
 
 .tables {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .table {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background-color: #007bff;
-    color: #fff;
+    background-color: #3498db;
+    color: white;
+    padding: 15px 25px;
     text-decoration: none;
+    font-size: 1.2em;
     border-radius: 5px;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .table:hover {
-    background-color: #0056b3;
+    background-color: #2980b9;
+    transform: translateY(-5px);
 }
 
+.crud-buttons {
+    margin-top: 20px;
+}
+
+.crud-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    font-size: 1.1em;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.crud-btn:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+
+/* Боковая панель с заказами */
 .sidebar {
     flex: 1;
-    padding: 20px;
     background-color: #fff;
-    border-left: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar h2 {
-    margin-top: 0;
+    font-size: 1.5em;
+    margin-bottom: 15px;
 }
 
 .sidebar ul {
-    list-style: none;
-    padding: 0;
+    list-style-type: none;
 }
 
 .sidebar li {
-    margin-bottom: 10px;
+    margin: 10px 0;
+}
+
+.sidebar p {
+    font-size: 1.1em;
+}
+
+/* Мобильная адаптивность */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .main-content {
+        margin-right: 0;
+    }
+
+    .tables {
+        justify-content: center;
+    }
+
+    .table {
+        font-size: 1em;
+    }
+
+    .crud-btn {
+        font-size: 1em;
+    }
 }

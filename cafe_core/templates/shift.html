@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление сменами</title>
+    <link rel="stylesheet" href="{% static 'css/shift.css' %}">
+</head>
+<body>
+
+<h1>Управление сменами</h1>
+
+<!-- Форма для начала новой смены -->
+<form method="POST" action="{% url 'start-shift-url' %}">
+    {% csrf_token %}
+    <label for="start_time">Начало смены:</label>
+    <input type="datetime-local" id="start_time" name="start_time" required>
+    <button type="submit" class="button">Начать смену</button>
+</form>
+
+<!-- Список смен с информацией о выручке -->
+<h2>Текущие смены</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Номер смены</th>
+            <th>Начало смены</th>
+            <th>Окончание смены</th>
+            <th>Выручка</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for shift in shifts %}
+            <tr>
+                <td>{{ shift.id }}</td>
+                <td>{{ shift.start_time }}</td>
+                <td>
+                    {% if shift.end_time %}
+                        {{ shift.end_time }}
+                    {% else %}
+                        <form method="POST" action="{% url 'end-shift-url' %}">
+                            {% csrf_token %}
+                            <label for="end_time_{{ shift.id }}">Конец смены:</label>
+                            <input type="datetime-local" id="end_time_{{ shift.id }}" name="end_time" required>
+                            <input type="hidden" name="shift_id" value="{{ shift.id }}">
+                            <button type="submit" class="button">Завершить смену</button>
+                        </form>
+                    {% endif %}
+                </td>
+                <td>{{ shift.total_revenue }} руб.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

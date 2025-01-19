@@ -11,7 +11,7 @@
     <div class="container">
         <h1>Стол {{ table }}</h1>
         <h2>Выберите блюда:</h2>
-        <form action="{% url 'order-create' %}" method="POST">
+        <form action="{% url 'order-create-url' %}" method="POST">
             {% csrf_token %}
                 <input type="hidden" name="table" value="{{ table.id }}">
 

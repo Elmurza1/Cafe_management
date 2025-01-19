@@ -7,13 +7,19 @@
     <link rel="stylesheet" href="{% static 'css/order_detail.css' %}">
 </head>
 <body>
-    <h1>Детали заказа №{{ order.id }}</h1>
-    <p>Стол: {{ order.table_number }}</p>
-    <p>Блюда: {{ order.items.all|join:", " }}</p>
-    <p>Сумма: {{ order.total_price }} ₽</p>
-    <p>Статус: {{ order.get_status_display }}</p>
+    <div class="container">
+        <h1>Детали заказа №{{ order.id }}</h1>
+        <div class="order-details">
+            <p><strong>Стол:</strong> {{ order.table_number }}</p>
+            <p><strong>Блюда:</strong> {{ order.items.all|join:", " }}</p>
+            <p><strong>Сумма:</strong> {{ order.total_price }} ₽</p>
+            <p><strong>Статус:</strong> {{ order.get_status_display }}</p>
+        </div>
 
-    <a href="{% url 'order-edit' order.pk %}">Редактировать</a>
-    <a href="{% url 'orders-list' %}">Назад</a>
+        <div class="buttons">
+            <a href="{% url 'order-edit-url' order.pk %}" class="btn edit-btn">Редактировать</a>
+            <a href="{% url 'orders-url' %}" class="btn back-btn">Назад</a>
+        </div>
+    </div>
 </body>
 </html>

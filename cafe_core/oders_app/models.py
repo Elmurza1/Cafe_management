@@ -5,7 +5,6 @@ class Dish(models.Model):
     """ вьюшка для блюд """
     name = models.CharField(max_length=50, verbose_name='название блюда')
     price = models.PositiveIntegerField(verbose_name='цена')
-    description = models.TextField(verbose_name='описание')
 
     def __str__(self):
         return self.name
@@ -63,8 +62,8 @@ class Order(models.Model):
 
 class Shift(models.Model):
     """ вьюшка для смены """
-    start_time = models.DateTimeField(verbose_name='начало смены')
-    end_time = models.DateTimeField(verbose_name='окончание смены')
+    start_time = models.DateTimeField(verbose_name='начало смены', null=True, blank=True)
+    end_time = models.DateTimeField(verbose_name='окончание смены', null=True, blank=True)
     total_revenue = models.DecimalField(
         verbose_name='общая выручка',
         max_digits=10,

@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,17 +11,29 @@
     <div class="container">
         <!-- Основной блок -->
         <div class="main-content">
-            <h1>Выберите стол</h1>
-            <div class="tables">
-                {% for table in tables %}
-                    <a href="{% url 'orders-url' table.id %}" class="table">
-                        Стол {{ table }}
-                    </a>
-                {% endfor %}
-            </div>
+            {% if tables %}
+                <h1>Выберите стол</h1>
+                <div class="tables">
+                    {% for table in tables %}
+                        <a href="{% url 'orders-url' table.id %}" class="table">
+                            Стол {{ table }}
+                        </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <h1>Пока столов нет. Перейдите на страницу CRUD и добавьте</h1>
+            {% endif %}
         </div>
 
-        <!-- Боковая панель -->
+        <!-- Кнопка перехода на страницу CRUD -->
+        <div class="crud-buttons">
+            <a href="{% url 'dish-add-url' %}" class="btn crud-btn">Перейти в CRUD</a>
+        </div>
+        <div class="crud-buttons">
+            <a href="{% url 'orders-url' %}" class="btn crud-btn">Перейти в список заказов</a>
+        </div>
+
+        <!-- Боковая панель с заказами -->
         <div class="sidebar">
             <h2>Ваши заказы</h2>
             {% if orders %}
@@ -40,3 +52,4 @@
     </div>
 </body>
 </html>
+

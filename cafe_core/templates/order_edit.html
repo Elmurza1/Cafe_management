@@ -22,7 +22,6 @@
             {% endfor %}
         </select>
 
-        <!-- Выбор блюд -->
         <h3>Выберите блюда:</h3>
         {% for dish in dishes %}
             <label>
@@ -32,7 +31,7 @@
             </label><br>
         {% endfor %}
 
-        <!-- Изменение статуса -->
+
         <h3>Статус заказа:</h3>
         <select name="status">
             <option value="pending" {% if order.status == "pending" %}selected{% endif %}>В ожидании</option>
@@ -43,6 +42,6 @@
         <button type="submit">Сохранить</button>
     </form>
 
-    <a href="{% url 'order-detail' order.pk %}">Отмена</a>
+    <a href="{% url 'order-detail-url' order.pk %}">Отмена</a>
 </body>
 </html>

@@ -11,11 +11,13 @@
 
     <div class="container">
         <h1>Список заказов</h1>
-
+        <div class="crud-buttons">
+            <a href="{% url 'home-url' %}" class="btn crud-btn">главная страница</a>
+        </div>
         <!-- Форма для поиска -->
         <div class="search-form">
             <h3>Поиск по заказам</h3>
-            <form method="GET" action="{% url 'orders-list' %}">
+            <form method="GET" action="{% url 'orders-url' %}">
                 <input type="text" name="search" placeholder="Введите ID заказа или номер стола" value="{{ request.GET.search }}">
                 <button type="submit">Искать</button>
             </form>
@@ -42,7 +44,7 @@
                     <td>
                         <ul>
                             <li>
-                                <a href="{% url 'order-detail' order.pk %}">Заказ №{{ order.id }} - {{ order.total_price }} ₽</a>
+                                <a href="{% url 'order-detail-url' order.pk %}">Заказ №{{ order.id }} - {{ order.total_price }} ₽</a>
                             </li>
                             {% for dish in order.items.all %}
                             <li>{{ dish.name }} ({{ dish.price }} ₽)</li>
@@ -50,7 +52,7 @@
                         </ul>
                     </td>
                     <td>{{ order.total_price }} ₽</td>
-                    <td>{{ order.get_status_display }}</td>
+                    <td>{{ order.status }}</td>
                 </tr>
                 {% empty %}
                 <tr>

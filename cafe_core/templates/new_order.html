@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление заказами</title>
+    <link rel="stylesheet" href="{% static 'css/order_add.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Управление заказами в кафе</h1>
+        </header>
+
+        <!-- Добавление блюда -->
+        <section class="form-section">
+            <div class="form-wrapper">
+                <h2>Добавить блюдо</h2>
+                <form id="addDishForm" action="{% url 'dish-create-url' %}" method="post">
+                    {% csrf_token %}
+                    <input name="name" type="text" id="dishName" placeholder="Название блюда" required>
+                    <input name="price" type="number" id="dishPrice" placeholder="Цена" required>
+                    <button type="submit">Добавить блюдо</button>
+                </form>
+            </div>
+
+            <!-- Добавление стола -->
+            <div class="form-wrapper">
+                <h2>Добавить стол</h2>
+                <form method="post" action="{%  url 'table-create-url' %}" id="addTableForm">
+                    {% csrf_token %}
+                    <input type="number" name="number" id="tableNumber" placeholder="Номер стола" required>
+                    <select id="tableStatus">
+                        <option value="free">Свободен</option>
+                        <option value="occupied">Занят</option>
+                    </select>
+                    <button type="submit">Добавить стол</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Список блюд -->
+        <section class="dish-list">
+            <div class="crud-buttons">
+                <a href="{% url 'orders-url' %}" class="btn crud-btn">Перейти в список заказов</a>
+            </div>
+        </section>
+
+        <section class="table-list">
+            <h2>Список столов</h2>
+            <ul id="tableList">
+                {% for table in tables %}
+                    <li>Стол {{ table.number }} - {{ table.status }}
+                    <form action="{% url 'table-delete-url' table.id %}" method="POST" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="delete-button">Удалить</button>
+                    </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <!-- Список заказов -->
+        <section class="order-list">
+            <h2>Список блюд</h2>
+            <ul id="orderList">
+                {% for dish in dishes %}
+                    <li>{{ dish.name }} - {{ dish.price }} ₽
+                    <form action="{% url 'dish-delete-url' dish.id %}" method="POST" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="delete-button">Удалить</button>
+                    </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

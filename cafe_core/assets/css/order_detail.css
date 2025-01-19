@@ -1,92 +1,101 @@
-/* Общие стили */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+/* Общие настройки */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
 }
 
 .container {
-    max-width: 500px;
-    margin: 30px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Заголовок */
 h1 {
+    font-size: 2em;
     text-align: center;
-    color: #333;
+    color: #2c3e50;
+    margin-bottom: 20px;
 }
 
-/* Информация о заказе */
-.order-info {
-    padding: 15px;
-    border-radius: 5px;
-    background: #f9f9f9;
-    margin-bottom: 15px;
+/* Блок с деталями заказа */
+.order-details {
+    margin-bottom: 30px;
 }
 
-.order-info p {
-    margin: 5px 0;
-    font-size: 16px;
+.order-details p {
+    font-size: 1.1em;
+    margin: 10px 0;
 }
 
-/* Статус заказа */
-.status {
+.order-details strong {
     font-weight: bold;
-    padding: 5px 10px;
-    border-radius: 5px;
-    display: inline-block;
-}
-
-.status.pending {
-    background: #f0ad4e;
-    color: white;
-}
-
-.status.ready {
-    background: #5bc0de;
-    color: white;
-}
-
-.status.paid {
-    background: #5cb85c;
-    color: white;
+    color: #2c3e50;
 }
 
 /* Кнопки */
-.actions {
+.buttons {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
 }
 
-.actions a {
-    padding: 10px 15px;
-    border-radius: 5px;
+.btn {
     text-decoration: none;
-    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
     text-align: center;
-    width: 45%;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .edit-btn {
-    background: #007bff;
+    background-color: #4CAF50;
     color: white;
 }
 
 .edit-btn:hover {
-    background: #0056b3;
+    background-color: #45a049;
+    transform: translateY(-2px);
 }
 
 .back-btn {
-    background: #6c757d;
+    background-color: #3498db;
     color: white;
 }
 
 .back-btn:hover {
-    background: #5a6268;
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+/* Мобильная адаптивность */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    .order-details p {
+        font-size: 1em;
+    }
+
+    .btn {
+        font-size: 0.9em;
+        padding: 8px 16px;
+    }
 }

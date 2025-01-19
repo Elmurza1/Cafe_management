@@ -16,15 +16,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from oders_app.views import HomePageView, TableOrders, OrderPageView, OrderCreateView, OrderDetailView, OrderListView, OrderUpdateView
+from oders_app.views import (HomePageView, TableOrders, OrderPageView, OrderCreateView,
+     OrderDetailView, DishDeleteView, ShiftListView, StartShiftView,EndShiftView,
+     OrderListView, OrderUpdateView,  DishAddView, DishCreateView, TableCreateView, TableDeleteView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomePageView.as_view(), name='home-url'),
-    path('table/<int:table_id>/', TableOrders.as_view(), name='table_orders'),
+    path('table/<int:table_id>/', TableOrders.as_view(), name='table-orders-url'),
     path('orders/<int:table_id>/', OrderPageView.as_view(), name='orders-url'),
-    path('orders/create/', OrderCreateView.as_view(), name='order-create'),
-    path('orders-list/', OrderListView.as_view(), name='orders-list'),
-    path('orders-detail/<int:pk>/', OrderDetailView.as_view(), name='order-detail'),
-    path('orders-edit/<int:pk>/', OrderUpdateView.as_view(), name='order-edit'),
+    path('orders/create/', OrderCreateView.as_view(), name='order-create-url'),
+    path('orders-list/', OrderListView.as_view(), name='orders-url'),
+    path('orders-detail/<int:pk>/', OrderDetailView.as_view(), name='order-detail-url'),
+    path('orders-edit/<int:pk>/', OrderUpdateView.as_view(), name='order-edit-url'),
+    path('dish-add-list/', DishAddView.as_view(), name='dish-add-url'),
+    path('dish-create/', DishCreateView.as_view(), name='dish-create-url'),
+    path('table-create/', TableCreateView.as_view(), name='table-create-url'),
+    path('table-delete/<int:pk>/', TableDeleteView.as_view(), name='table-delete-url'),
+    path('dish-delete/<int:pk>/', DishDeleteView.as_view(), name='dish-delete-url'),
+    path('shift-list/', ShiftListView.as_view(), name='shift-list-url'),
+    path('start-shift/', StartShiftView.as_view(), name='start-shift-url'),
+    path('end-shift/', EndShiftView.as_view(), name='end-shift-url'),
 ]
