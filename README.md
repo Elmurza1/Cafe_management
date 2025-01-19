@@ -66,6 +66,7 @@ python manage.py test
 ## 📩 Контакты
 Автор: **Элмырза**  
 Email: **elmyrza217@gmail.com**  
+TG: [@ElmyrzaDev](https://t.me/ElmyrzaDev)
 GitHub: (https://github.com/Elmyrza1)
 
 ---
