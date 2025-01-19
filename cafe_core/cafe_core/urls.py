@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from oders_app.views import (HomePageView, TableOrders, OrderPageView, OrderCreateView,
-     OrderDetailView, DishDeleteView, ShiftListView, StartShiftView,EndShiftView,
+     OrderDetailView, DishDeleteView, ShiftListView, StartShiftView,EndShiftView, OrderDeleteView,
      OrderListView, OrderUpdateView,  DishAddView, DishCreateView, TableCreateView, TableDeleteView)
 
 urlpatterns = [
@@ -37,4 +37,5 @@ urlpatterns = [
     path('shift-list/', ShiftListView.as_view(), name='shift-list-url'),
     path('start-shift/', StartShiftView.as_view(), name='start-shift-url'),
     path('end-shift/', EndShiftView.as_view(), name='end-shift-url'),
+    path('order-delete/<int:pk>/', OrderDeleteView.as_view(), name='order-delete-url'),
 ]

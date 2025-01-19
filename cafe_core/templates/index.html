@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
+    <h4>заказы можно менять в детальной странице заказа,
+        что бы сделать заказ нажмите на ваш выбранный стол</h4>
     <div class="container">
         <!-- Основной блок -->
         <div class="main-content">
@@ -21,7 +23,7 @@
                     {% endfor %}
                 </div>
             {% else %}
-                <h1>Пока столов нет. Перейдите на страницу CRUD и добавьте</h1>
+                <h1>Пока столов нет. Перейдите на страницу CRUD, добавьте пару столов и блюд</h1>
             {% endif %}
         </div>
 
@@ -31,6 +33,9 @@
         </div>
         <div class="crud-buttons">
             <a href="{% url 'orders-url' %}" class="btn crud-btn">Перейти в список заказов</a>
+        </div>
+         <div class="crud-buttons">
+            <a href="{% url 'shift-list-url' %}" class="btn crud-btn">управление смен</a>
         </div>
 
         <!-- Боковая панель с заказами -->

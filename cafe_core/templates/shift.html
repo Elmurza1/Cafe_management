@@ -16,10 +16,18 @@
     {% csrf_token %}
     <label for="start_time">Начало смены:</label>
     <input type="datetime-local" id="start_time" name="start_time" required>
+    <h4>вводит только текущее время иначе сделанные ваши заказы
+        не попадут в диапазон смены и прибыль не посчитается.
+        <br>
+        Расчет происходить для при тех заказах со статусом "Оплачен"
+    </h4>
     <button type="submit" class="button">Начать смену</button>
 </form>
 
 <!-- Список смен с информацией о выручке -->
+        <div class="crud-buttons">
+            <a href="{% url 'home-url' %}" class="btn crud-btn">Перейти в главную страницу</a>
+        </div>
 <h2>Текущие смены</h2>
 <table>
     <thead>
